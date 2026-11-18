@@ -1,115 +1,117 @@
-# PowerShell 學習教程
+# PowerShell Learning Tutorial
 
-這個專案以循序漸進的練習，從 PowerShell 基礎走到撰寫可重複使用的自動化腳本。每個單元會介紹核心概念、提供可執行的命令範例，並以小任務練習實作。
+[繁體中文](README.zh-TW.md)
 
-## 學習目標
+This project takes you from PowerShell fundamentals to writing reusable automation scripts through a series of progressive exercises. Each lesson introduces core concepts, provides runnable command examples, and offers hands-on tasks for practice.
 
-完成教程後，將能夠：
+## Learning Objectives
 
-- 在 PowerShell 中瀏覽檔案、操作物件與使用管線。
-- 查詢命令用法，並組合命令完成日常管理工作。
-- 使用變數、條件、迴圈、函式與錯誤處理撰寫腳本。
-- 安全地處理檔案、文字、CSV、JSON 與系統資訊。
-- 編寫、測試及維護簡單的自動化工具。
+After completing this tutorial, you will be able to:
 
-## 適合對象與環境
+- Navigate files, work with objects, and use the pipeline in PowerShell.
+- Look up command usage and combine commands to perform everyday administrative tasks.
+- Write scripts using variables, conditionals, loops, functions, and error handling.
+- Safely work with files, text, CSV, JSON, and system information.
+- Write, test, and maintain simple automation tools.
 
-- 適合初學者；不需要先學過其他程式語言。
-- 建議使用 Windows PowerShell 5.1 或 PowerShell 7。各單元若有版本差異，請以該單元說明為準。
-- 練習前可在終端機執行 `$PSVersionTable` 查看 PowerShell 版本。
-- 建議建立專用練習資料夾，避免直接對重要檔案或正式環境執行練習命令。
+## Audience and Environment
 
-## 課程路線
+- Suitable for beginners; no prior programming experience is required.
+- Windows PowerShell 5.1 or PowerShell 7 is recommended. Follow each lesson's notes for version-specific differences.
+- Before practicing, run `$PSVersionTable` in a terminal to check your PowerShell version.
+- Use a dedicated practice directory to avoid running exercises against important files or production environments.
 
-| 單元 | 主題 | 學習重點 |
+## Learning Path
+
+| Lesson | Topic | What You'll Learn |
 | --- | --- | --- |
-| 01 | 列出與瀏覽項目 | 使用 `Get-ChildItem`、路徑與基本篩選 |
-| 02 | 命令探索與說明 | 使用 `Get-Command`、`Get-Help`、參數與命令慣例 |
-| 03 | 命令語法與命名慣例 | 認識 Verb-Noun 命名、別名、位置參數與常見參數 |
-| 04 | 路徑與提供者 | 使用相對及絕對路徑，了解檔案系統提供者 |
-| 05 | 管線與物件 | 傳遞物件，了解屬性、方法與管線的運作方式 |
-| 06 | 選取、篩選與排序 | 使用 `Select-Object`、`Where-Object`、`Sort-Object` 等命令 |
-| 07 | 變數、型別與運算子 | 儲存資料、比較、轉換與使用運算子 |
-| 08 | 字串與格式化 | 插值、切割、取代及格式化文字 |
-| 09 | 陣列與雜湊表 | 建立集合、讀取元素及整理鍵值資料 |
-| 10 | 條件判斷 | 使用 `if`、`elseif`、`else` 與 `switch` |
-| 11 | 迴圈與流程控制 | 使用 `foreach`、`for`、`while`、`break` 與 `continue` |
-| 12 | 函式入門 | 將重複工作封裝成可重用的函式 |
-| 13 | 函式參數與作用域 | 設計參數、驗證輸入，理解變數作用域 |
-| 14 | 檔案與資料夾操作 | 建立、複製、移動、重新命名與安全刪除項目 |
-| 15 | 文字檔、編碼與正規表示式 | 讀寫文字、處理編碼，使用正規表示式搜尋資料 |
-| 16 | CSV 資料處理 | 匯入、篩選、修改及匯出表格資料 |
-| 17 | JSON 與 XML | 解析及產生常見結構化資料格式 |
-| 18 | 錯誤處理與除錯 | 使用 `try`、`catch`、`finally` 與除錯工具診斷問題 |
-| 19 | 輸出、報表與記錄 | 格式化結果、匯出資料並記錄執行資訊 |
-| 20 | 程序管理 | 查詢、啟動及停止程序，理解操作影響 |
-| 21 | 服務、事件與系統資訊 | 查詢服務、事件記錄及基本系統狀態 |
-| 22 | 環境變數與 PowerShell 設定檔 | 使用環境變數，了解設定檔及啟動時載入的命令 |
-| 23 | 網路診斷基礎 | 使用常見命令檢查連線、名稱解析與網路狀態 |
-| 24 | Web 請求與 REST API | 使用 `Invoke-RestMethod` 呼叫 API 並處理回應 |
-| 25 | 背景工作與工作流程 | 啟動及管理背景工作，取得執行結果 |
-| 26 | 遠端管理概念 | 認識 PowerShell Remoting、連線需求與安全原則 |
-| 27 | 腳本安全與執行原則 | 了解執行原則、權限、信任來源與敏感資料保護 |
-| 28 | 模組與程式碼重用 | 匯入、探索及建立模組，整理可重用命令 |
-| 29 | 測試與程式碼品質 | 撰寫基本測試、驗證輸入並檢查腳本品質 |
-| 30 | 整合專題 | 製作檔案盤點或資料報表工具，完成測試與使用說明 |
+| 01 | Listing and navigating items | Use `Get-ChildItem`, paths, and basic filtering |
+| 02 | Command discovery and help | Use `Get-Command`, `Get-Help`, parameters, and command conventions |
+| 03 | Command syntax and naming conventions | Learn Verb-Noun naming, aliases, positional parameters, and common parameters |
+| 04 | Paths and providers | Use relative and absolute paths and understand the file system provider |
+| 05 | The pipeline and objects | Pass objects through the pipeline and understand properties, methods, and pipeline behavior |
+| 06 | Selecting, filtering, and sorting | Use commands such as `Select-Object`, `Where-Object`, and `Sort-Object` |
+| 07 | Variables, types, and operators | Store, compare, and convert data, and use operators |
+| 08 | Strings and formatting | Interpolate, split, replace, and format text |
+| 09 | Arrays and hash tables | Create collections, access elements, and organize key-value data |
+| 10 | Conditional logic | Use `if`, `elseif`, `else`, and `switch` |
+| 11 | Loops and flow control | Use `foreach`, `for`, `while`, `break`, and `continue` |
+| 12 | Introduction to functions | Package repeated tasks into reusable functions |
+| 13 | Function parameters and scope | Design parameters, validate input, and understand variable scope |
+| 14 | Working with files and directories | Create, copy, move, rename, and safely delete items |
+| 15 | Text files, encoding, and regular expressions | Read and write text, handle encoding, and search with regular expressions |
+| 16 | Working with CSV data | Import, filter, modify, and export tabular data |
+| 17 | JSON and XML | Parse and generate common structured data formats |
+| 18 | Error handling and debugging | Diagnose issues using `try`, `catch`, `finally`, and debugging tools |
+| 19 | Output, reports, and logging | Format results, export data, and log execution details |
+| 20 | Process management | Inspect, start, and stop processes, and understand the impact of these actions |
+| 21 | Services, events, and system information | Inspect services, event logs, and basic system status |
+| 22 | Environment variables and PowerShell profiles | Use environment variables and understand profiles and commands loaded at startup |
+| 23 | Network diagnostics fundamentals | Check connectivity, name resolution, and network status with common commands |
+| 24 | Web requests and REST APIs | Call APIs with `Invoke-RestMethod` and handle responses |
+| 25 | Background jobs and workflows | Start and manage background jobs and retrieve their results |
+| 26 | Remote management concepts | Learn about PowerShell Remoting, connection requirements, and security principles |
+| 27 | Script security and execution policies | Understand execution policies, permissions, trusted sources, and sensitive data protection |
+| 28 | Modules and code reuse | Import, explore, and create modules to organize reusable commands |
+| 29 | Testing and code quality | Write basic tests, validate input, and check script quality |
+| 30 | Capstone project | Build a file inventory or data reporting tool, with tests and usage instructions |
 
-目前從第 01 單元開始；後續單元可依相同編號新增資料夾與練習檔案。每個主題也可拆分成多個短練習。
+Start with Lesson 01. Add later lessons as folders and exercise files using the same numbering. Each topic can also be divided into several short exercises.
 
-## 建議的單元格式
+## Suggested Lesson Format
 
-每個單元建議包含以下內容：
+Each lesson should include:
 
-1. **目標**：列出完成後應能做到的事情。
-2. **概念與範例**：以短命令說明語法及輸出。
-3. **動手練習**：從修改範例到獨立完成小任務。
-4. **檢查理解**：確認結果並說明命令的作用。
-5. **延伸挑戰**：加入篩選、錯誤情境或其他需求。
+1. **Objectives**: List what learners should be able to do after the lesson.
+2. **Concepts and examples**: Explain syntax and output with concise commands.
+3. **Hands-on exercises**: Progress from modifying examples to completing a small task independently.
+4. **Knowledge check**: Verify the result and explain what the commands do.
+5. **Further challenge**: Add filtering, error scenarios, or other requirements.
 
-## 建議學習方式
+## Recommended Study Approach
 
-1. 依序閱讀單元，先在終端機逐行執行範例。
-2. 執行前先看懂命令會讀取或修改哪些資料。
-3. 自行調整參數並觀察輸出，不只複製貼上。
-4. 完成練習後，試著不看範例重做一次。
-5. 遇到不熟悉的命令時，使用 `Get-Help <命令名稱> -Examples` 查看範例；若本機說明尚未安裝，可先使用 `Get-Help <命令名稱> -Online`。
+1. Read the lessons in order and run the examples line by line in a terminal.
+2. Before running a command, understand what data it will read or modify.
+3. Adjust parameters and observe the output instead of only copying and pasting.
+4. After completing an exercise, try it again without looking at the example.
+5. For an unfamiliar command, use `Get-Help <command-name> -Examples` to see examples. If local help is not installed, try `Get-Help <command-name> -Online`.
 
-## 安全提醒
+## Safety Notes
 
-- 初學時優先使用練習資料夾與測試資料。
-- 執行刪除、覆寫或大量變更前，先確認路徑和目標；必要時先用 `-WhatIf` 預覽支援此參數的命令。
-- 不要將範例命令直接套用到正式環境，也不要在不了解作用時以系統管理員身分執行。
-- 腳本執行原則可能限制 `.ps1` 執行；請先了解目前原則，不要為了練習而任意降低系統安全設定。
+- Start with a practice directory and test data.
+- Before deleting, overwriting, or making large-scale changes, verify the path and target. When needed, preview commands that support `-WhatIf`.
+- Do not apply example commands directly to production environments or run commands as an administrator without understanding their effects.
+- Script execution policies may restrict `.ps1` files. Check the current policy first; do not lower system security settings arbitrarily just to practice.
 
-## 進度追蹤
+## Progress Tracker
 
-- [ ] 01 — 列出與瀏覽項目
-- [ ] 02 — 命令探索與說明
-- [ ] 03 — 命令語法與命名慣例
-- [ ] 04 — 路徑與提供者
-- [ ] 05 — 管線與物件
-- [ ] 06 — 選取、篩選與排序
-- [ ] 07 — 變數、型別與運算子
-- [ ] 08 — 字串與格式化
-- [ ] 09 — 陣列與雜湊表
-- [ ] 10 — 條件判斷
-- [ ] 11 — 迴圈與流程控制
-- [ ] 12 — 函式入門
-- [ ] 13 — 函式參數與作用域
-- [ ] 14 — 檔案與資料夾操作
-- [ ] 15 — 文字檔、編碼與正規表示式
-- [ ] 16 — CSV 資料處理
-- [ ] 17 — JSON 與 XML
-- [ ] 18 — 錯誤處理與除錯
-- [ ] 19 — 輸出、報表與記錄
-- [ ] 20 — 程序管理
-- [ ] 21 — 服務、事件與系統資訊
-- [ ] 22 — 環境變數與 PowerShell 設定檔
-- [ ] 23 — 網路診斷基礎
-- [ ] 24 — Web 請求與 REST API
-- [ ] 25 — 背景工作與工作流程
-- [ ] 26 — 遠端管理概念
-- [ ] 27 — 腳本安全與執行原則
-- [ ] 28 — 模組與程式碼重用
-- [ ] 29 — 測試與程式碼品質
-- [ ] 30 — 整合專題
+- [ ] 01 — Listing and navigating items
+- [ ] 02 — Command discovery and help
+- [ ] 03 — Command syntax and naming conventions
+- [ ] 04 — Paths and providers
+- [ ] 05 — The pipeline and objects
+- [ ] 06 — Selecting, filtering, and sorting
+- [ ] 07 — Variables, types, and operators
+- [ ] 08 — Strings and formatting
+- [ ] 09 — Arrays and hash tables
+- [ ] 10 — Conditional logic
+- [ ] 11 — Loops and flow control
+- [ ] 12 — Introduction to functions
+- [ ] 13 — Function parameters and scope
+- [ ] 14 — Working with files and directories
+- [ ] 15 — Text files, encoding, and regular expressions
+- [ ] 16 — Working with CSV data
+- [ ] 17 — JSON and XML
+- [ ] 18 — Error handling and debugging
+- [ ] 19 — Output, reports, and logging
+- [ ] 20 — Process management
+- [ ] 21 — Services, events, and system information
+- [ ] 22 — Environment variables and PowerShell profiles
+- [ ] 23 — Network diagnostics fundamentals
+- [ ] 24 — Web requests and REST APIs
+- [ ] 25 — Background jobs and workflows
+- [ ] 26 — Remote management concepts
+- [ ] 27 — Script security and execution policies
+- [ ] 28 — Modules and code reuse
+- [ ] 29 — Testing and code quality
+- [ ] 30 — Capstone project
