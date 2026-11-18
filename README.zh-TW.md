@@ -26,7 +26,7 @@
 | 01 | 列出與瀏覽項目 | 使用 `Get-ChildItem`、路徑與基本篩選 |
 | 02 | 命令探索與說明 | 使用 `Get-Command`、`Get-Help`、參數與命令慣例 |
 | 03 | 命令語法與命名慣例 | 認識 Verb-Noun 命名、別名、位置參數與常見參數 |
-| 04 | 路徑與提供者 | 使用相對及絕對路徑，了解檔案系統提供者 |
+| 04 | 路徑與提供者 | 使用 `Test-Path`、相對及絕對路徑，了解檔案系統提供者 |
 | 05 | 管線與物件 | 傳遞物件，了解屬性、方法與管線的運作方式 |
 | 06 | 選取、篩選與排序 | 使用 `Select-Object`、`Where-Object`、`Sort-Object` 等命令 |
 | 07 | 變數、型別與運算子 | 儲存資料、比較、轉換與使用運算子 |
@@ -55,6 +55,21 @@
 | 30 | 整合專題 | 製作檔案盤點或資料報表工具，完成測試與使用說明 |
 
 目前從第 01 單元開始；後續單元可依相同編號新增資料夾與練習檔案。每個主題也可拆分成多個短練習。
+
+## 使用 Test-Path 檢查路徑
+
+使用 `Test-Path` 檢查路徑是否存在。路徑存在時回傳 `$true`，不存在時回傳 `$false`。使用 `-PathType Leaf` 可檢查檔案，使用 `-PathType Container` 可檢查資料夾。
+
+```powershell
+# 檢查路徑是否存在
+Test-Path -Path .\README.md
+
+# 檢查路徑是檔案還是資料夾
+Test-Path -Path .\README.md -PathType Leaf
+Test-Path -Path .\01-Get-ChildItem -PathType Container
+```
+
+可使用 `Get-Help Test-Path -Examples` 查看更多範例。
 
 ## 建議的單元格式
 

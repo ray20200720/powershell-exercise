@@ -28,7 +28,7 @@ After completing this tutorial, you will be able to:
 | 01 | Listing and navigating items | Use `Get-ChildItem`, paths, and basic filtering |
 | 02 | Command discovery and help | Use `Get-Command`, `Get-Help`, parameters, and command conventions |
 | 03 | Command syntax and naming conventions | Learn Verb-Noun naming, aliases, positional parameters, and common parameters |
-| 04 | Paths and providers | Use relative and absolute paths and understand the file system provider |
+| 04 | Paths and providers | Use `Test-Path`, relative and absolute paths, and understand the file system provider |
 | 05 | The pipeline and objects | Pass objects through the pipeline and understand properties, methods, and pipeline behavior |
 | 06 | Selecting, filtering, and sorting | Use commands such as `Select-Object`, `Where-Object`, and `Sort-Object` |
 | 07 | Variables, types, and operators | Store, compare, and convert data, and use operators |
@@ -57,6 +57,21 @@ After completing this tutorial, you will be able to:
 | 30 | Capstone project | Build a file inventory or data reporting tool, with tests and usage instructions |
 
 Start with Lesson 01. Add later lessons as folders and exercise files using the same numbering. Each topic can also be divided into several short exercises.
+
+## Checking Paths with Test-Path
+
+Use `Test-Path` to check whether a path exists. It returns `$true` when the path exists and `$false` when it does not. Use `-PathType Leaf` to check for a file or `-PathType Container` to check for a directory.
+
+```powershell
+# Check whether a path exists
+Test-Path -Path .\README.md
+
+# Check whether a path is a file or directory
+Test-Path -Path .\README.md -PathType Leaf
+Test-Path -Path .\01-Get-ChildItem -PathType Container
+```
+
+Run `Get-Help Test-Path -Examples` to see more examples.
 
 ## Suggested Lesson Format
 
