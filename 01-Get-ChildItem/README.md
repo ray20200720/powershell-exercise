@@ -29,6 +29,24 @@ Get-ChildItem -Recurse
 
 `Get-ChildItem` returns PowerShell objects that include information such as the name, path, item type, and timestamps. Run `Get-Help Get-ChildItem -Examples` to see more examples.
 
+## Paging Through Results
+
+When there are many items, pipe the results to `Out-Host -Paging` to view them page by page:
+
+```powershell
+Get-ChildItem | Out-Host -Paging
+```
+
+To view a fixed number of 20 items per page, use `Select-Object` to skip earlier items:
+
+```powershell
+# Page 1
+Get-ChildItem | Select-Object -First 20
+
+# Page 2
+Get-ChildItem | Select-Object -Skip 20 -First 20
+```
+
 ## Exercises
 
 1. List the items in the current location and identify the files and directories.

@@ -29,6 +29,24 @@ Get-ChildItem -Recurse
 
 `Get-ChildItem` 的輸出是 PowerShell 物件，包含名稱、路徑、項目類型與時間等資訊。可使用 `Get-Help Get-ChildItem -Examples` 查看更多範例。
 
+## 分頁顯示
+
+項目很多時，可將結果傳送給 `Out-Host -Paging`，逐頁查看：
+
+```powershell
+Get-ChildItem | Out-Host -Paging
+```
+
+若要固定每頁查看 20 個項目，可使用 `Select-Object` 跳過前面的項目：
+
+```powershell
+# 第 1 頁
+Get-ChildItem | Select-Object -First 20
+
+# 第 2 頁
+Get-ChildItem | Select-Object -Skip 20 -First 20
+```
+
 ## 練習
 
 1. 列出目前位置的項目，辨認檔案與資料夾。
